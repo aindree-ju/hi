@@ -1,21 +1,29 @@
-name: Daily Commit
+name: Daily Repository Update
 
 on:
   schedule:
-    - cron: '16 12 * * *'  # Runs daily at 11:55 UTC (17:25 IST)
+    - cron: '22 11 * * *'  # Runs at 11:30 UTC (5:00 PM IST)
+  workflow_dispatch:
 
 jobs:
-  daily-commit:
+  create-daily-commit:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
-
-    - name: Commit with academic email 23f2000983@ds.study.iitm.ac.in 
-      run: |
-        date >> daily_commit_log.txt
-        git config --global user.name 'GitHub Action'
-        git config --global user.email 'aindreec.etce.ug@jadavpuruniversity.in'
-        git add daily_commit_log.txt
-        git commit -m "Daily automated commit"
-        git push
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+      
+      - name: Setup Git with 23f2000983@ds.study.iitm.ac.in
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "23f2000983@ds.study.iitm.ac.in"
+      
+      - name: Create and commit daily update
+        run: |
+          date >> update.log
+          git add update.log
+          git commit -m "Daily automated update $(date)"
+          git push origin main
