@@ -2,28 +2,29 @@ name: Daily Repository Update
 
 on:
   schedule:
-    - cron: '22 11 * * *'  # Runs at 11:30 UTC (5:00 PM IST)
+    - cron: '30 11 * * *'  # Runs at 11:30 UTC (5:00 PM IST)
   workflow_dispatch:
 
 jobs:
   create-daily-commit:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
-      
+      contents: write  # Ensure the action has write permissions
+
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout the repository
+        uses: actions/checkout@v3
         with:
           fetch-depth: 1
-      
+
       - name: Setup Git with 23f2000983@ds.study.iitm.ac.in
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "23f2000983@ds.study.iitm.ac.in"
-      
+
       - name: Create and commit daily update
         run: |
-          date >> update.log
+          python -c "from datetime import datetime; print(datetime.now())" >> update.log
           git add update.log
           git commit -m "Daily automated update $(date)"
           git push origin main
