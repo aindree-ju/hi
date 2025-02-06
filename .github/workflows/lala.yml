@@ -1,4 +1,4 @@
-name: Daily Repository Update
+name: Daily Repository Update 23f2000983@ds.study.iitm.ac.in
 
 on:
   schedule:
@@ -12,7 +12,7 @@ jobs:
       contents: write  # Ensure the action has write permissions
 
     steps:
-      - name: Checkout the repository
+      - name: Checkout the repository 23f2000983@ds.study.iitm.ac.in
         uses: actions/checkout@v3
         with:
           fetch-depth: 1
@@ -22,7 +22,7 @@ jobs:
           git config --global user.name "GitHub Actions"
           git config --global user.email "23f2000983@ds.study.iitm.ac.in"
 
-      - name: Create and commit daily update
+      - name: Create and commit daily update 23f2000983@ds.study.iitm.ac.in
         run: |
           python -c "from datetime import datetime; print(datetime.now())" >> update.log
           git add update.log
