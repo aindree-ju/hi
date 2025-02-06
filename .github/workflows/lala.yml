@@ -1,28 +1,29 @@
-name: Daily Repository Update 23f2000983@ds.study.iitm.ac.in
+name: Daily Commit Workflow 23f2000983@ds.study.iitm.ac.in
 
 on:
   schedule:
-    - cron: '30 11 * * *'  # Runs at 11:30 UTC (5:00 PM IST)
+    # Runs at 11:30 UTC
+    - cron: '30 11 * * *'
   workflow_dispatch:
 
 jobs:
   create-daily-commit:
     runs-on: ubuntu-latest
     permissions:
-      contents: write  # Ensure the action has write permissions
+      contents: write
 
     steps:
-      - name: Checkout the repository 23f2000983@ds.study.iitm.ac.in
+      - name: Checkout with email 23f2000983@ds.study.iitm.ac.in
         uses: actions/checkout@v3
         with:
           fetch-depth: 1
 
-      - name: Setup Git with 23f2000983@ds.study.iitm.ac.in
+      - name: Configure Git for 23f2000983@ds.study.iitm.ac.in
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "23f2000983@ds.study.iitm.ac.in"
 
-      - name: Create and commit daily update 23f2000983@ds.study.iitm.ac.in
+      - name: Create daily commit by 23f2000983@ds.study.iitm.ac.in
         run: |
           python -c "from datetime import datetime; print(datetime.now())" >> update.log
           git add update.log
