@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  update-repo-23f2000983@ds.study.iitm.ac.in:
+  update_repo_email:
     name: Repository Update for 23f2000983@ds.study.iitm.ac.in
     runs-on: ubuntu-latest
     permissions:
@@ -18,12 +18,12 @@ jobs:
 
       - name: Configure Git with email 23f2000983@ds.study.iitm.ac.in
         run: |
-          git config user.name "GitHub Actions for 23f2000983@ds.study.iitm.ac.in"
+          git config user.name "GitHub Actions"
           git config user.email "23f2000983@ds.study.iitm.ac.in"
 
       - name: Create commit with email 23f2000983@ds.study.iitm.ac.in
         run: |
-          echo "Commit timestamp: $(date)" > commit-log-23f2000983@ds.study.iitm.ac.in.txt
-          git add commit-log-23f2000983@ds.study.iitm.ac.in.txt
+          echo "Commit timestamp: $(date)" > commit-log.txt
+          git add commit-log.txt
           git commit -m "Automated commit for 23f2000983@ds.study.iitm.ac.in"
           git push
